@@ -5,8 +5,15 @@ import { PrismaService } from 'src/prisma/prisma.service'
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
+
   async createUser(data: User) {
-    return await this.prisma.user.create({ data })
+    try {
+      return await this.prisma.user.create({ data })
+    } catch (error) {
+      console.error(error)
+      // Manejar el error según sea necesario
+      throw new Error('Error al crear un usuario.')
+    }
   }
 
   async findAll(): Promise<User[]> {

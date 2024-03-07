@@ -15,4 +15,10 @@ export class UserController {
   async findAll() {
     return await this.userService.findAll()
   }
+
+  @Post('test')
+  testData(@Body() data: User) {
+    console.log(data)
+    return this.userService.createUser(data)
+  }
 }

@@ -14,8 +14,8 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  score Int    @default(0)
-  ip    String
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  score Int?    @default(0)
+  ip    String?
 }
