@@ -1,0 +1,17 @@
+version: 2
+services:
+  - env: .env
+    build:
+      name: Default
+    run:
+      name: Default
+      detached: true
+      ports:
+        - 3000:3000
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      command:
+        - npm install
+        - npx prisma migrate deploy
+        - npx prisma generate
+        - npm run start:prod
