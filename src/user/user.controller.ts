@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Ip, Post, Req } from '@nestjs/common'
+import { Body, Controller, Get, Post, Req } from '@nestjs/common'
 import { UserService } from './user.service'
 import { User } from '@prisma/client'
 
@@ -24,8 +24,8 @@ export class UserController {
 
   @Get('myEndpoint')
   myEndpointFunc(@Req() request) {
-    const ipAddress =
-      request.headers['x-forwarded-for'] || request.connection.remoteAddress
-    return ipAddress
+    const realIp =
+      request.headers['x-real-ip'] || request.connection.remoteAddress
+    return realIp
   }
 }
